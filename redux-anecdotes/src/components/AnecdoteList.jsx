@@ -16,7 +16,6 @@ const AnecdoteList = () => {
   //anecdotesOrdered no se puede mutar, por eso se realiza un spread
   const anecdotes = [...anecdotesOrdered]
   anecdotes.sort((a, b) => b.votes - a.votes);
-  console.log(anecdotes)
 
   const vote = (id) => {
     dispatch(addVote(id));
