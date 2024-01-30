@@ -5,7 +5,7 @@ import { addVote } from "../reducers/anecdoteReducer";
 const AnecdoteList = () => {
   const dispatch = useDispatch();
 
-  const anecdotes = useSelector(({ filter, anecdotes }) => {
+  const anecdotesOrdered = useSelector(({ filter, anecdotes }) => {
     if (filter === 'ALL') {
       return anecdotes;
     }
@@ -13,8 +13,10 @@ const AnecdoteList = () => {
     ? anecdotes.filter(anecdote => anecdote.favorite)
     : anecdotes.filter(anecdote => !anecdote.favorite)
   });
-  
+  //anecdotesOrdered no se puede mutar, por eso se realiza un spread
+  const anecdotes = [...anecdotesOrdered]
   anecdotes.sort((a, b) => b.votes - a.votes);
+  console.log(anecdotes)
 
   const vote = (id) => {
     dispatch(addVote(id));
