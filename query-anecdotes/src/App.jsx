@@ -1,12 +1,12 @@
 import AnecdoteForm from './components/AnecdoteForm'
 import Notification from './components/Notification'
-import { useQuery, useQueryClient } from 'react-query'
+import { useQuery, useQueryClient, useMutation } from 'react-query'
 import { getAnecdotes } from './request'
 
 const App = () => {
   const queryClient = useQueryClient()
 
-  const result = useQuery('anecdote', getAnecdotes, {
+  const result = useQuery('anecdotes', getAnecdotes, {
     retry: 1
   })
   
@@ -19,6 +19,7 @@ const App = () => {
   }
 
   const anecdotes = result.data
+  console.log('anec', anecdotes);
 
   const handleVote = (anecdote) => {
     console.log('vote')
